@@ -5,9 +5,9 @@ interface user {
     username: string,
     email: string,
     password: string,
-    description: string,
     createdAt: Date,
     updatedAt: Date,
+    lastVisit: Date,
     admin: Boolean,
     adminedAt?: Date,
 }
@@ -31,15 +31,15 @@ const userSchema = new mongoose.Schema<user>({
         required: [true, 'Please enter a password'],
         minlength: [8, 'Minimum password length is 8 characters']
     },
-    "description": {
-        type: String,
-        required: true
-    },
     "createdAt": {
         type: Date,
         required: true
     },
     "updatedAt": {
+        type: Date,
+        required: true
+    },
+    "lastVisit": {
         type: Date,
         required: true
     },

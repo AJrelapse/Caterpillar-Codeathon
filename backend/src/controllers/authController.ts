@@ -35,7 +35,6 @@ export async function signup(req: Request, res: Response): Promise<void> {
     const username: String = req.body.username;
     const password: String = req.body.password;
     const email: String = req.body.email;
-    const description: String = req.body.description;
     const admin: boolean = (req.body.admin) ? true : false;
     const adminedAt: Date | null = (admin) ? new Date() : null;
     const createdAt: Date = new Date();
@@ -51,7 +50,6 @@ export async function signup(req: Request, res: Response): Promise<void> {
                 username,
                 password,
                 email,
-                description,
                 createdAt,
                 updatedAt,
                 admin,
