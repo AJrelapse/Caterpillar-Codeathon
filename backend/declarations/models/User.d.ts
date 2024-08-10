@@ -3,11 +3,10 @@ interface user {
     username: string;
     email: string;
     password: string;
-    description: string;
     createdAt: Date;
     updatedAt: Date;
-    admin: Boolean;
-    adminedAt?: Date;
+    lastVisit: Date;
+    vehicles: mongoose.Schema.Types.Array;
 }
 declare const User: mongoose.Model<user, {}, {}, {}, mongoose.Document<unknown, {}, user> & user & {
     _id: mongoose.Types.ObjectId;

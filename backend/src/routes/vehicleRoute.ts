@@ -2,7 +2,7 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/submit", (req, res) => {
+router.get("/submit", (_req, res) => {
     res.send("Vehicle submitted!");
 });
 

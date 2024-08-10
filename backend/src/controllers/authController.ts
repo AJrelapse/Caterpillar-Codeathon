@@ -36,8 +36,6 @@ export async function signup(req: Request, res: Response): Promise<void> {
     const username: String = req.body.username;
     const password: String = req.body.password;
     const email: String = req.body.email;
-    const admin: boolean = (req.body.admin) ? true : false;
-    const adminedAt: Date | null = (admin) ? new Date() : null;
     const createdAt: Date = new Date();
     const updatedAt: Date = new Date();
 
@@ -53,8 +51,6 @@ export async function signup(req: Request, res: Response): Promise<void> {
                 email,
                 createdAt,
                 updatedAt,
-                admin,
-                adminedAt
             });
             // console.log(usr._id);
             const user_id = usr._id;
@@ -136,8 +132,5 @@ export const changePassword = async (req: Request, res: Response) => {
         res.status(500).send("Error Changing Password");
         return;
     }
-    // TODO: Implement change password logic here
-
-    // Example response
     res.status(200).json({ message: 'Password changed successfully' });
 };
