@@ -8,8 +8,7 @@ interface user {
     createdAt: Date,
     updatedAt: Date,
     lastVisit: Date,
-    admin: Boolean,
-    adminedAt?: Date,
+    vehicles: mongoose.Schema.Types.Array,
 }
 
 const userSchema = new mongoose.Schema<user>({
@@ -43,16 +42,10 @@ const userSchema = new mongoose.Schema<user>({
         type: Date,
         required: true
     },
-    "admin": {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    "adminedAt": {
-        type: Date,
-        required: false,
-        default: null
-    },
+    "vehicles": {
+        type: mongoose.Schema.Types.Array,
+        required: true
+    }
 })
 
 userSchema.pre('save', async function (next) {
