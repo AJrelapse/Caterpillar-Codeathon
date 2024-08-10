@@ -2,4 +2,8 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/")
+router.get("/submit", (req, res) => {
+    res.send("Vehicle submitted!");
+});
+
+export default router;

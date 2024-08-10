@@ -24,6 +24,7 @@ export interface Misc {
 export interface vehicle {
     purchaseDate: mongoose.Schema.Types.Date;
     lastServiceDate: mongoose.Schema.Types.Date;
+    owner: mongoose.Schema.Types.ObjectId
     model: mongoose.Schema.Types.String;
     drive: mongoose.Schema.Types.Subdocument;
     engine: mongoose.Schema.Types.Subdocument;

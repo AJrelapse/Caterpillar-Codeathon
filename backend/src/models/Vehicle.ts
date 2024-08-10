@@ -9,6 +9,11 @@ const vehicleSchema = new mongoose.Schema<vehicle>({
         type: Date,
         required: true
     },
+    "owner": {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
     "model": {
         type: String,
         required: [true, 'Please enter a model'],
