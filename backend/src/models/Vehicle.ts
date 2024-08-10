@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export interface vehicle { 
+export interface vehicle {
     purchaseDate: mongoose.Schema.Types.Date;
     lastServiceDate: mongoose.Schema.Types.Date;
     model: mongoose.Schema.Types.String;
