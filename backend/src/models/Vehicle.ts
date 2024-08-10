@@ -11,31 +11,31 @@ const vehicleSchema = new mongoose.Schema<vehicle>({
     },
     "model": {
         type: String,
-        required: [true, 'Please enter an model'],
+        required: [true, 'Please enter a model'],
         unique: true,
         lowercase: true
     },
     'engine': {
-        transmissionPressure: { type: Number, required: true },
-        pedalSensor: { type: Number, required: true },
-        brakeControl: { type: Number, required: true },
+        transmissionPressure: { type: mongoose.Schema.Types.Decimal128, required: true },
+        pedalSensor: { type: mongoose.Schema.Types.Decimal128, required: true },
+        brakeControl: { type: mongoose.Schema.Types.Decimal128, required: true },
     },
     'drive': {
-        oilPressure: { type: Number, required: true },
-        temparature: { type: Number, required: true },
-        speed: { type: Number, required: true },
+        oilPressure: { type: mongoose.Schema.Types.Decimal128, required: true },
+        temparature: { type: mongoose.Schema.Types.Decimal128, required: true },
+        speed: { type: mongoose.Schema.Types.Decimal128, required: true },
     },
     'fuel': {
-        pressure: { type: Number, required: true },
-        level: { type: Number, required: true },
-        temperature: { type: Number, required: true },
-        waterInFuel: { type: Number, required: true },
+        pressure: { type: mongoose.Schema.Types.Decimal128, required: true },
+        level: { type: mongoose.Schema.Types.Decimal128, required: true },
+        temperature: { type: mongoose.Schema.Types.Decimal128, required: true },
+        waterInFuel: { type: mongoose.Schema.Types.Decimal128, required: true },
     },
     'misc': {
-        hydraulicPumpRate: { type: Number, required: true },
-        exhaustGasTemparature: { type: Number, required: true },
-        systemVoltage: { type: Number, required: true },
-        airFilterPressure: { type: Number, required: true },
+        hydraulicPumpRate: { type: mongoose.Schema.Types.Decimal128, required: true },
+        exhaustGasTemparature: { type: mongoose.Schema.Types.Decimal128, required: true },
+        systemVoltage: { type: mongoose.Schema.Types.Decimal128, required: true },
+        airFilterPressure: { type: mongoose.Schema.Types.Decimal128, required: true },
     }
 })
 

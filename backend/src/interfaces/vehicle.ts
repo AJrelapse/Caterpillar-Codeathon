@@ -1,25 +1,25 @@
 import mongoose from "mongoose";
 export interface Drive {
-    transmissionPressure: number;
-    pedalSensor: number;
-    brakeControl: number;
+    transmissionPressure: mongoose.Schema.Types.Decimal128;
+    pedalSensor: mongoose.Schema.Types.Decimal128;
+    brakeControl: mongoose.Schema.Types.Decimal128;
 }
 export interface Engine {
-    oilPressure: number;
-    temparature: number;
-    speed: number;
+    oilPressure: mongoose.Schema.Types.Decimal128;
+    temparature: mongoose.Schema.Types.Decimal128;
+    speed: mongoose.Schema.Types.Decimal128;
 }
 export interface Fuel {
-    pressure: number;
-    level: number;
-    temperature: number;
-    waterInFuel: number;
+    pressure: mongoose.Schema.Types.Decimal128;
+    level: mongoose.Schema.Types.Decimal128;
+    temperature: mongoose.Schema.Types.Decimal128;
+    waterInFuel: mongoose.Schema.Types.Decimal128;
 }
 export interface Misc {
-    hydraulicPumpRate: number;
-    exhaustGasTemparature: number;
-    systemVoltage: number;
-    airFilterPressure: number;
+    hydraulicPumpRate: mongoose.Schema.Types.Decimal128;
+    exhaustGasTemparature: mongoose.Schema.Types.Decimal128;
+    systemVoltage: mongoose.Schema.Types.Decimal128;
+    airFilterPressure: mongoose.Schema.Types.Decimal128;
 }
 export interface vehicle {
     purchaseDate: mongoose.Schema.Types.Date;
