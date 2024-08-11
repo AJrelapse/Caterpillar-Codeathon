@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import Vehicle from '../models/Vehicle.js';
 import axios from 'axios';
+import Contact from '../models/contact.js';
 export async function purchaseController(req, res) {
     const model = req.body.model;
     if (!model) {
@@ -29,7 +30,44 @@ export async function purchaseController(req, res) {
 export async function submitController(req, res) {
     const model = req.body['model'];
     const vehicle_id = req.params['vehicle_id'];
-    const component = req.body.component;
+    const speed = req.body.Speed;
+    const temparature = req.body.Temperature;
+    const oilPressure = req.body.oilPressure;
+    const Water = req.body.Water;
+    const ftemp = req.body.temp;
+    const Pressure = req.body.Pressure;
+    const Level = req.body.Level;
+    const Transmission = req.body.Transmission;
+    const Sensor = req.body.Sensor;
+    const Brake = req.body.Brake;
+    const Hydraulic = req.body.Hydraulic;
+    const Exhaust = req.body.Exhaust;
+    const Voltage = req.body.Voltage;
+    const Filter = req.body.Filter;
+    const component = {
+        engine: {
+            speed: speed,
+            temparature: temparature,
+            oilPressure: oilPressure
+        },
+        drive: {
+            transmissionPressure: Transmission,
+            pedalSensor: Sensor,
+            brakeControl: Brake
+        },
+        fuel: {
+            pressure: Pressure,
+            level: Level,
+            temperature: ftemp,
+            waterInFuel: Water
+        },
+        misc: {
+            hydraulicPumpRate: Hydraulic,
+            exhaustGasTemparature: Exhaust,
+            systemVoltage: Voltage,
+            airFilterPressure: Filter
+        },
+    };
     if (!component) {
         res.status(400).send('Component is required');
         return;
@@ -47,7 +85,7 @@ export async function submitController(req, res) {
         return;
     }
     if (!component.engine.temparature) {
-        res.status(400).send('Temparature is required');
+        res.status(400).send('Temparature is required en');
         return;
     }
     if (!component.engine.speed) {
@@ -111,9 +149,15 @@ export async function submitController(req, res) {
         return;
     }
     const serviceDate = new Date();
+    console.log(component);
     try {
         const prob = await submit(component, vehicle_id);
-        res.json({ prob });
+        const b = prob.engine;
+        const d = prob.fuel;
+        const c = prob.drive;
+        const a = prob.misc;
+        console.log(component);
+        res.json(prob);
     }
     catch (error) {
         console.log(error);
@@ -147,8 +191,7 @@ async function submit(daata, machine_id) {
     try {
         const response = await axios.request(config);
         console.log(response.data);
-        final['misc'] = response.data;
-        return final;
+        final['misc'] = response.data['Probabilty of failure'];
     }
     catch (error) {
         console.log(error);
@@ -166,15 +209,13 @@ async function submit(daata, machine_id) {
         url: 'http://localhost:9002/',
         headers: {
             'Content-Type': 'application/json',
-            'Cookie': 'X-Auth-Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmIzYTA4YmQxYzNhZjc4MTU0YmUyZjEiLCJpYXQiOjE3MjMwNTAzNzQsImV4cCI6MTcyMzEzNjc3NH0.SGhB2vutnK7zfv2OHxNQVaY_tpwB_Qz2Xop04CkDmyQ'
         },
         data: data1
     };
     try {
         const response = await axios.request(config1);
         console.log(response.data);
-        final['engine'] = response.data;
-        return final;
+        final['engine'] = response.data['Probabilty of failure'];
     }
     catch (error) {
         console.log(error);
@@ -192,15 +233,13 @@ async function submit(daata, machine_id) {
         url: 'http://localhost:9000/',
         headers: {
             'Content-Type': 'application/json',
-            'Cookie': 'X-Auth-Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmIzYTA4YmQxYzNhZjc4MTU0YmUyZjEiLCJpYXQiOjE3MjMwNTAzNzQsImV4cCI6MTcyMzEzNjc3NH0.SGhB2vutnK7zfv2OHxNQVaY_tpwB_Qz2Xop04CkDmyQ'
         },
         data: data2
     };
     try {
         const response = await axios.request(config2);
         console.log(response.data);
-        final['drive'] = response.data;
-        return final;
+        final['drive'] = response.data['Probabilty of failure'];
     }
     catch (error) {
         console.log(error);
@@ -210,7 +249,7 @@ async function submit(daata, machine_id) {
         "Pressure": fuel['pressure'],
         "Level": fuel['level'],
         "Temperature": fuel['temperature'],
-        "Water_In_Fuel": fuel['waterInFuel']
+        "Water_Fuel": fuel['waterInFuel']
     });
     console.log(data3);
     let config3 = {
@@ -219,18 +258,47 @@ async function submit(daata, machine_id) {
         url: 'http://localhost:9001/',
         headers: {
             'Content-Type': 'application/json',
-            'Cookie': 'X-Auth-Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmIzYTA4YmQxYzNhZjc4MTU0YmUyZjEiLCJpYXQiOjE3MjMwNTAzNzQsImV4cCI6MTcyMzEzNjc3NH0.SGhB2vutnK7zfv2OHxNQVaY_tpwB_Qz2Xop04CkDmyQ'
         },
         data: data3
     };
     try {
         const response = await axios.request(config3);
         console.log(response.data);
-        final['fuel'] = response.data;
-        return final;
+        final['fuel'] = response.data['Result'];
     }
     catch (error) {
         console.log(error);
     }
     return final;
+}
+export function contactController(req, res) {
+    const { username, email, password, booking } = req.body;
+    if (!username) {
+        res.status(400).send('Username is required');
+        return;
+    }
+    if (!email) {
+        res.status(400).send('Email is required');
+        return;
+    }
+    if (!password) {
+        res.status(400).send('Password is required');
+        return;
+    }
+    if (!booking) {
+        res.status(400).send('booking date required');
+        return;
+    }
+    try {
+        const _con = new Contact({
+            username,
+            email,
+            password,
+            booking
+        });
+        res.send("Submitted Successfully");
+    }
+    catch (err) {
+        res.status(500).send("Unable to Submit");
+    }
 }

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { component } from '../interfaces/declarartions';
+import { component } from '../interfaces/declarartions.js';
 const componentSchema = new mongoose.Schema<component>({
     'engine': {
         transmissionPressure: { type: mongoose.Schema.Types.Number, required: true },

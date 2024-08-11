@@ -1,19 +1,10 @@
 import mongoose from 'mongoose';
-declare const Component: mongoose.Model<{
-    [x: string]: unknown;
-}, {}, {}, {}, mongoose.Document<unknown, {}, {
-    [x: string]: unknown;
-}> & {
-    [x: string]: unknown;
-} & Required<{
-    _id: unknown;
-}>, mongoose.Schema<component, mongoose.Model<component, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
-    [x: string]: unknown;
-}, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
-    [x: string]: unknown;
-}>> & mongoose.FlatRecord<{
-    [x: string]: unknown;
-}> & Required<{
-    _id: unknown;
-}>>>;
+import { component } from '../interfaces/declarartions.js';
+declare const Component: mongoose.Model<component, {}, {}, {}, mongoose.Document<unknown, {}, component> & component & {
+    _id: mongoose.Types.ObjectId;
+}, mongoose.Schema<component, mongoose.Model<component, any, any, any, mongoose.Document<unknown, any, component> & component & {
+    _id: mongoose.Types.ObjectId;
+}, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, component, mongoose.Document<unknown, {}, mongoose.FlatRecord<component>> & mongoose.FlatRecord<component> & {
+    _id: mongoose.Types.ObjectId;
+}>>;
 export default Component;

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { vehicle } from "../interfaces/declarartions";
-import Component from "./components";
+import { vehicle } from "../interfaces/declarartions.js";
+import Component from "./components.js";
 const vehicleSchema = new mongoose.Schema<vehicle>({
     "purchaseDate": {
         type: Date,
