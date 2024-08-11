@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
+import Contact from "../models/contact.js";
 export async function login(req, res) {
     const email = req.body.email;
     const password = req.body.password;
@@ -117,7 +118,39 @@ export const changePassword = async (req, res) => {
     res.status(200).json({ message: 'Password changed successfully' });
 };
 export const contactUs = async (req, res) => {
-    const email = req.body;
-    console.log(email);
+    const data = { ...req.body };
+    const name = data.name;
+    const email = data.email;
+    const phone = data.phone;
+    const password = data.password;
+    const booking = new Date(data.book);
+    console.log({
+        name,
+        email,
+        phone,
+        password,
+        booking,
+    });
+
+    console.log(data);
+    if (!name || !email || !phone || !password || !booking) {
+        res.status(400).send("Please fill all the fields");
+        return;
+    }
+    try {
+        console.log(email);
+        const contact = await Contact.create({
+            name,
+            email,
+            phone,
+            password,
+            booking,
+        });
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send("Error Submitting Form");
+        return;
+    }
     res.status(200).send("Email Sent");
 };

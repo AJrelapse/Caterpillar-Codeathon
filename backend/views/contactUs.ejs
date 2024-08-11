@@ -9,6 +9,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <script src="/public/scripts/contactUs.js"></script>
     <link rel="stylesheet" type="text/css" href="public/styles/main.css" />
     <style>
       /* contact card */
@@ -169,7 +170,7 @@
                 </div>
                 <div class="input-box">
                   <label>Password</label>
-                  <input required="" placeholder="Enter password" type="text" />
+                  <input required="" placeholder="Enter password" type="text" id="password" />
                 </div>
                 <div class="column">
                   <div class="input-box">
@@ -178,7 +179,7 @@
                       required=""
                       placeholder="Enter phone number"
                       type="telephone"
-                      id="password"
+                      id="phone"
                     />
                   </div>
                   <div class="input-box">
@@ -187,12 +188,12 @@
                       required=""
                       placeholder="Enter birth date"
                       type="date"
-                      id="phone"
+                      id="book"
                     />
                   </div>
                 </div>
                 
-                <button>Submit</button>
+                <button id="submit">Submit</button>
               </form>
             </section>
           </div>
