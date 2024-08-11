@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Lato);
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+        .faq-heading {
+            font-family: Lato;
+            font-weight: 400;
+            font-size: 19px;
+            transition: text-indent 0.2s;
+            text-indent: 20px;
+            color: #333;
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .faq-text {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            color: black;
+            width: 100%;
+            margin-top: 10px;
+            padding-left: 20px;
+            padding-top: 3%;
+            margin-bottom: 30px;
+            display: none;
+            transition:  0.8s ease;
+            min-height: 25vh;
+            overflow: hidden;
+            border: 3px solid #f2bb13;
+            background-color:#f5c1262f ;
+        }
+
+        .faq {
+            width: 100%;
+            max-width: 1000px;
+            margin: 5rem auto;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .faq label {
+            display: block;
+            position: relative;
+            cursor: pointer;
+            background-color: #FAFAFA;
+            border: 3px solid #f2c513;
+            margin-top: 40px;
+            padding: 10px;
+        }
+
+        .faq input[type="checkbox"] {
+            display: none;
+        }
+
+        .faq .faq-arrow {
+            width: 10px;
+            height: 10px;
+            transition: transform 0.8s ease;
+            border-top: 2px solid rgba(0, 0, 0, 0.33);
+            border-right: 2px solid rgba(0, 0, 0, 0.33);
+            float: right;
+            margin-top: -25px;
+            transform: rotate(45deg);
+        }
+
+        .faq input[type="checkbox"]:checked + label > .faq-arrow {
+            transform: rotate(135deg);
+        }
+
+        .faq input[type="checkbox"]:checked + label + .faq-text {
+            display: block;
+            max-height: 1000px; /* Large value for smooth animation */
+            padding-bottom: 10px;
+        }
+
+        /* Focus state for better accessibility */
+        .faq label:focus {
+            outline: 2px solid #4f7351;
+        }
+
+        /* Hides the scrollbar in WebKit browsers */
+        
+    </style>
+</head>
+<body>
+    <div class='faq'>
+        <input id='faq-a' type='checkbox'>
+        <label for='faq-a'>
+            <p class="faq-heading">Is this Dropbox upgrade safe?</p>
+            <div class='faq-arrow'></div>
+        </label>
+        <div class="faq-text">
+            <p>It is completely safe and totally legal! There will is no record of this process to your shared Dropbox users.</p>
+        </div>
+
+        <input id='faq-b' type='checkbox'>
+        <label for='faq-b'>
+            <p class="faq-heading">How long does it take to upgrade my Dropbox?</p>
+            <div class='faq-arrow'></div>
+        </label>
+        <div class="faq-text">
+            <p>Upgrading is a slow process and will take around 3-10 days. <strong>In order to control the risk and secure the space you earned, we will gradually process it.</strong> during this time you can still use your account as normal as usual.</p>
+        </div>
+
+        <input id='faq-c' type='checkbox'>
+        <label for='faq-c'>
+            <p class="faq-heading">What do you need to do the upgrade?</p>
+            <div class='faq-arrow'></div>
+        </label>
+        <div class="faq-text">
+            <p>NO ACCESS TO YOUR PERSONAL ACCOUNT OR INFO IS REQUIRED! All I need from you is your Dropbox referral link.</p>
+        </div>
+
+        <input id='faq-d' type='checkbox'>
+        <label for='faq-d'>
+            <p class="faq-heading">Where do I find my personal Dropbox referral link?</p>
+            <div class='faq-arrow'></div>
+        </label>
+        <div class="faq-text">
+            <p>Log in to the Dropbox website and get your referral link: www.dropbox.com/referral. Copy the link (example link: <strong>https://db.tt/xYxYzyXy</strong>) and send it via eBay message. </p>
+        </div>
+
+        <input id='faq-e' type='checkbox'>
+        <label for='faq-e'>
+            <p class="faq-heading">Can I split the purchased space between several accounts?</p>
+            <div class='faq-arrow'></div>
+        </label>
+        <div class="faq-text">
+            <p>Yes, you can! Just send me all the referral links during the checkout process, including a short note, what account should receive which amount of space.</p>
+        </div>
+    </div>
+</body>
+</html>
