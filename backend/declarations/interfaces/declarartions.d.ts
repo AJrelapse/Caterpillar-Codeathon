@@ -30,9 +30,9 @@ export interface vehicle {
     components: component[];
 }
 export interface component {
-    engine: mongoose.Schema.Types.Subdocument;
-    drive: mongoose.Schema.Types.Subdocument;
-    fuel: mongoose.Schema.Types.Subdocument;
-    misc: mongoose.Schema.Types.Subdocument;
+    engine: mongoose.Schema.Types.Subdocument extends Engine ?  : ;
+    drive: mongoose.Schema.Types.Subdocument extends Drive ?  : ;
+    fuel: mongoose.Schema.Types.Subdocument extends Fuel ?  : ;
+    misc: mongoose.Schema.Types.Subdocument extends Misc ?  : ;
     serviceDate: mongoose.Schema.Types.Date;
 }

@@ -2,17 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import pkg from 'validator';
 const { isEmail } = pkg;
-interface user {
-    username: string,
-    email: string,
-    password: string,
-    createdAt: Date,
-    updatedAt: Date,
-    lastVisit: Date,
-    vehicles: mongoose.Schema.Types.Array,
-}
-
-const userSchema = new mongoose.Schema<user>({
+const userSchema = new mongoose.Schema({
     "username": {
         type: String,
         required: [true, 'Please enter an email'],
@@ -47,14 +37,11 @@ const userSchema = new mongoose.Schema<user>({
         type: mongoose.Schema.Types.Array,
         required: true
     }
-})
-
+});
 userSchema.pre('save', async function (next) {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password.toString(), salt);
     next();
 });
-
 const User = mongoose.model('user', userSchema);
-
 export default User;

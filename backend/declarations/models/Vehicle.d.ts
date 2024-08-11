@@ -1,10 +1,19 @@
 import mongoose from "mongoose";
-import { vehicle } from "../interfaces/declarartions";
-declare const Vehicle: mongoose.Model<vehicle, {}, {}, {}, mongoose.Document<unknown, {}, vehicle> & vehicle & {
-    _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<vehicle, mongoose.Model<vehicle, any, any, any, mongoose.Document<unknown, any, vehicle> & vehicle & {
-    _id: mongoose.Types.ObjectId;
-}, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, vehicle, mongoose.Document<unknown, {}, mongoose.FlatRecord<vehicle>> & mongoose.FlatRecord<vehicle> & {
-    _id: mongoose.Types.ObjectId;
-}>>;
+declare const Vehicle: mongoose.Model<{
+    [x: string]: unknown;
+}, {}, {}, {}, mongoose.Document<unknown, {}, {
+    [x: string]: unknown;
+}> & {
+    [x: string]: unknown;
+} & Required<{
+    _id: unknown;
+}>, mongoose.Schema<vehicle, mongoose.Model<vehicle, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+    [x: string]: unknown;
+}, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
+    [x: string]: unknown;
+}>> & mongoose.FlatRecord<{
+    [x: string]: unknown;
+}> & Required<{
+    _id: unknown;
+}>>>;
 export default Vehicle;

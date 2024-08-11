@@ -1,18 +1,15 @@
-import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { component } from '../interfaces/declarartions';
 import Vehicle from '../models/Vehicle.js';
 import axios from 'axios';
-
-export async function purchaseController(req: Request, res: Response): Promise<void>{
-    const model:string = req.body.model;
+export async function purchaseController(req, res) {
+    const model = req.body.model;
     if (!model) {
         res.status(400).send('Model is required');
     }
-    const purchaseDate: Date = new Date();
-    const lastServiceDate: Date = purchaseDate;
-    const owner = jwt.verify(req.cookies['X-Auth-Token'].jwt, process.env.SECRET_KEY as string);
-    const components:Array<component> = [];
+    const purchaseDate = new Date();
+    const lastServiceDate = purchaseDate;
+    const owner = jwt.verify(req.cookies['X-Auth-Token'].jwt, process.env.SECRET_KEY);
+    const components = [];
     try {
         const newVehicle = new Vehicle({
             purchaseDate,
@@ -23,17 +20,16 @@ export async function purchaseController(req: Request, res: Response): Promise<v
         });
         newVehicle.save();
         res.send('Vehicle Purchased!');
-    } catch (error) {
+    }
+    catch (error) {
         console.log(error);
         res.status(500).send('Error Purchasing Vehicle');
     }
-    
 }
-
-export async function submitController(req: Request, res: Response): Promise<void>{
+export async function submitController(req, res) {
     const model = req.body['model'];
     const vehicle_id = req.params['vehicle_id'];
-    const component: component = req.body.component;
+    const component = req.body.component;
     if (!component) {
         res.status(400).send('Component is required');
         return;
@@ -116,22 +112,15 @@ export async function submitController(req: Request, res: Response): Promise<voi
     }
     const serviceDate = new Date();
     try {
-        // const vehicle = await Vehicle.findById(vehicle_id);
-        // if (!vehicle) {
-        //     res.status(404).send('Vehicle Not Found');
-        //     return;
-        // }
-        // vehicle.components.push(component);
-        // vehicle.save();
-        const prob =await submit(component,vehicle_id);
-        res.json({prob});
-    } catch (error) {
+        const prob = await submit(component, vehicle_id);
+        res.json({ prob });
+    }
+    catch (error) {
         console.log(error);
         res.status(500).send('Error Submitting Component');
     }
 }
-
-async function submit(daata: component, machine_id: string): Promise<any> {
+async function submit(daata, machine_id) {
     const engine = daata['engine'];
     const drive = daata['drive'];
     const fuel = daata['fuel'];
@@ -155,18 +144,15 @@ async function submit(daata: component, machine_id: string): Promise<any> {
         },
         data: data
     };
-    
-        try {
-            const response = await axios.request(config);
-            console.log(response.data);
-            final['misc'] = response.data;
-            return final;
-            // console.log(JSON.stringify(response.data));
-
-        }
-        catch (error) {
-            console.log(error);
-        }
+    try {
+        const response = await axios.request(config);
+        console.log(response.data);
+        final['misc'] = response.data;
+        return final;
+    }
+    catch (error) {
+        console.log(error);
+    }
     let data1 = JSON.stringify({
         "Machine": machine_id,
         "Oil_Pressure": engine['oilPressure'],
@@ -184,18 +170,15 @@ async function submit(daata: component, machine_id: string): Promise<any> {
         },
         data: data1
     };
-    
-        try {
-            const response = await axios.request(config1);
-            console.log(response.data);
-            final['engine'] = response.data;
-            return final;
-            // console.log(JSON.stringify(response.data));
-
-        }
-        catch (error) {
-            console.log(error);
-        }
+    try {
+        const response = await axios.request(config1);
+        console.log(response.data);
+        final['engine'] = response.data;
+        return final;
+    }
+    catch (error) {
+        console.log(error);
+    }
     let data2 = JSON.stringify({
         "Machine": machine_id,
         "Transmission_Pressure": drive['transmissionPressure'],
@@ -213,18 +196,15 @@ async function submit(daata: component, machine_id: string): Promise<any> {
         },
         data: data2
     };
-    
-        try {
-            const response = await axios.request(config2);
-            console.log(response.data);
-            final['drive'] = response.data;
-            return final;
-            // console.log(JSON.stringify(response.data));
-
-        }
-        catch (error) {
-            console.log(error);
-        }
+    try {
+        const response = await axios.request(config2);
+        console.log(response.data);
+        final['drive'] = response.data;
+        return final;
+    }
+    catch (error) {
+        console.log(error);
+    }
     let data3 = JSON.stringify({
         "Machine": machine_id,
         "Pressure": fuel['pressure'],
@@ -243,17 +223,14 @@ async function submit(daata: component, machine_id: string): Promise<any> {
         },
         data: data3
     };
-    
-        try {
-            const response = await axios.request(config3);
-            console.log(response.data);
-            final['fuel'] = response.data;
-            return final;
-            // console.log(JSON.stringify(response.data));
-
-        }
-        catch (error) {
-            console.log(error);
-        }
+    try {
+        const response = await axios.request(config3);
+        console.log(response.data);
+        final['fuel'] = response.data;
+        return final;
+    }
+    catch (error) {
+        console.log(error);
+    }
     return final;
-}    
+}
